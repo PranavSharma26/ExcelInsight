@@ -1,44 +1,30 @@
 import React, { useState } from 'react';
-import Tesseract from 'tesseract.js';
-import ReusableChart from '../ReusableChart';
 
 export default function UploadAsImage() {
-  const [imageFile, setImageFile] = useState(null);
-  const [textContent, setTextContent] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [headers, setHeaders] = useState([]);
-  const [selectedRows, setSelectedRows] = useState({ row1: '', row2: '' });
-  const [showCharts, setShowCharts] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setImageFile(URL.createObjectURL(file));
-      setLoading(true);
-      Tesseract.recognize(file, 'eng', { logger: (m) => console.log(m) }).then(
-        ({ data: { text } }) => {
-          setTextContent(text);
-          setLoading(false);
-          // TODO: Parse text into structured data (headers and data)
-        }
-      );
-    }
-  };
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
 
-  return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-xl font-semibold mb-4">Upload Image File</h2>
-      <input type="file" accept="image/*" onChange={handleFileChange} className="mb-4" />
-      {loading && <p>Processing image...</p>}
-      {textContent && (
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Extracted Text Content</h3>
-          <p>{textContent}</p>
-          {/* TODO: Implement data extraction and visualization */}
+    return (
+        <div className="flex flex-col items-center mt-8 p-4 text-center w-full sm:w-4/5 md:w-3/5 lg:w-2/5 mx-auto">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4">Upload Image File</h2>
+            <p className="text-sm sm:text-base text-gray-700 mb-6">
+                Please upload your image file for analysis.
+            </p>
+
+            <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+            />
+
+            <button
+                className="w-full sm:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                Upload
+            </button>
         </div>
-      )}
-    </div>
-  );
+    );
 }

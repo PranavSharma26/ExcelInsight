@@ -11,17 +11,17 @@ export default function UploadType() {
             <div className='flex flex-col sm:flex-row gap-4'>
                 <NavLink
                     to="/upload-as-excel"
-                    className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+                    className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:bg-indigo-500">
                     Excel
                 </NavLink>
                 <NavLink
                     to="/upload-as-pdf"
-                    className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+                    className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:bg-pink-500">
                     PDF
                 </NavLink>
                 <NavLink
                     to="/upload-as-image"
-                    className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+                    className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:bg-teal-500">
                     Image
                 </NavLink>
             </div>
