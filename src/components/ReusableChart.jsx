@@ -13,7 +13,7 @@ export default function ReusableChart({ data, column }) {
         }
 
         // Create dimensions and margins
-        const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+        const margin = { top: 20, right: 30, bottom: 100, left: 50 }; // Increased bottom margin for x-axis labels
         const width = 600 - margin.left - margin.right; // Adjust width
         const height = 300 - margin.top - margin.bottom; // Adjust height for frequency graph
 
@@ -43,11 +43,19 @@ export default function ReusableChart({ data, column }) {
 
         const frequencyY = d3.scaleLinear().domain([0, d3.max(groupedData, (d) => d[1])]).range([height, 0]);
 
-        svg
-            .append('g')
+        // Create x-axis with vertical labels
+        const xAxisGroup = svg.append('g')
             .attr('class', 'x-axis')
             .attr('transform', `translate(0,${height})`)
             .call(d3.axisBottom(frequencyX));
+
+        // Rotate x-axis labels to 90 degrees and reduce font size
+        xAxisGroup.selectAll('text')
+            .attr('transform', 'rotate(-90)') // Rotate labels 90 degrees
+            .attr('text-anchor', 'end')
+            .attr('dx', '-1em') // Adjust the position
+            .attr('dy', '0.5em') // Adjust the position
+            .style('font-size', '10px'); // Set a smaller font size for the labels
 
         svg.append('g').attr('class', 'y-axis').call(d3.axisLeft(frequencyY));
 
