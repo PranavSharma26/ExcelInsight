@@ -28,7 +28,7 @@ export default function Select() {
         >
           <p>Upload</p>            
         </NavLink>
-        <NavLink 
+        {/* <NavLink 
           to="scan" 
           className={({ isActive }) => `
             flex justify-center items-center
@@ -39,7 +39,7 @@ export default function Select() {
           `}
         >
           <p>Scan</p>            
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );
